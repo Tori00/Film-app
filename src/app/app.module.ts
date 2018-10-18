@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,14 +41,21 @@ import {
     MatTooltipModule,
     MatTreeModule,
 } from '@angular/material';
+import { SearchComponent } from './search/search.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        SearchComponent,
+        SidenavComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         MatAutocompleteModule,
         MatBadgeModule,
         MatBottomSheetModule,
@@ -83,8 +91,48 @@ import {
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
+        AppRoutingModule,
     ],
-    providers: [],
+    exports: [
+        MatAutocompleteModule,
+        MatBadgeModule,
+        MatBottomSheetModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatMenuModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatTreeModule
+    ],
+    providers: [
+        SearchService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
