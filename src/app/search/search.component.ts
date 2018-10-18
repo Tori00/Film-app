@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from './search.service';
+import { Router } from '@angular/router';
+import { TheMovieDbService } from '../the-moviedb.service';
 
 @Component({
     selector: 'app-search',
@@ -10,7 +11,10 @@ export class SearchComponent implements OnInit {
 
     public result: SearchResultFilmListItem[];
 
-    constructor(private searchService: SearchService) { }
+    constructor(
+        private searchService: TheMovieDbService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
     }
@@ -23,6 +27,10 @@ export class SearchComponent implements OnInit {
 
     public getYear(releaseDate: string): String {
         return releaseDate.substring(0, 4);
+    }
+
+    public goToFilmDetail(id: number): void {
+        this.router.navigateByUrl("film/" + id);
     }
 
 }

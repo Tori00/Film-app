@@ -5,7 +5,7 @@
     <button mat-raised-button (click)="getSearchResult(filmName.value)" class="search-button">Search</button>
 </div>
 <div class="films-container">
-    <mat-card class="film" *ngFor="let film of result">
+    <mat-card class="film" *ngFor="let film of result" (click)="goToFilmDetail(film.id)">
         <img src="./../../assets/128px-Popcorn.svg.png">
         <div>{{film.title}} ({{getYear(film.release_date)}})</div>
     </mat-card>

@@ -44,13 +44,15 @@ import {
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { SearchService } from './search/search.service';
+import { FilmDetailComponent } from './film-detail/film-detail.component';
+import { TheMovieDbService } from './the-moviedb.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         SearchComponent,
-        SidenavComponent
+        SidenavComponent,
+        FilmDetailComponent
     ],
     imports: [
         BrowserModule,
@@ -131,7 +133,7 @@ import { SearchService } from './search/search.service';
         MatTreeModule
     ],
     providers: [
-        SearchService
+        TheMovieDbService
     ],
     bootstrap: [AppComponent]
 })
