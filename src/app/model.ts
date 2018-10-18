@@ -12,17 +12,17 @@ export class MovieDetail {
     homepage: String;
     id: number;
     imdb_id: String;
-    original_language: string;
-    original_title: string;
+    original_language: String;
+    original_title: String;
     overview: String;
     popularity: number;
     poster_path: String;
     production_countries: ProductionCountries[];
-    release_date: string;
+    release_date: String;
     revenue: number;
     runtime: Number;
     spoken_languages: SpokenLanguages;
-    status: string;
+    status: String;
     tagline: String;
     title: String;
     video: boolean;
@@ -32,15 +32,15 @@ export class MovieDetail {
 
 export class Genre {
     id: number;
-    name: string;
+    name: String;
 }
 
 export class ProductionCountries {
-    iso_3166_1: string;
-    name: string;
+    iso_3166_1: String;
+    name: String;
 }
 
 export class SpokenLanguages {
-    iso_639_1: string;
-    name: string;
+    iso_639_1: String;
+    name: String;
 }

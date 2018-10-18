@@ -31,4 +31,8 @@ export class FilmDetailComponent implements OnInit {
         return this.service.getMoviePoster(this.movieDetail.poster_path);
     }
 
+    public getYear(releaseDate: string): String {
+        return releaseDate.substring(0, 4);
+    }
+
 }
