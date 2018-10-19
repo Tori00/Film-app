@@ -9,8 +9,9 @@ export class TheMovieDbService {
 
     constructor(private http: HttpClient) { }
 
-    public getSearchResult(filmName: string): Observable<SearchResult> {
-        const options = new HttpParams().set('api_key', apiKey).set('query', filmName);
+    public getSearchResult(filmName: String, page?: number): Observable<SearchResult> {
+        page = page + 1; // needed, because on themoviedb.org default is 1
+        const options = new HttpParams().set('api_key', apiKey).set('query', filmName.valueOf()).set('page', page ? page.toString() : "1");
 
         return this.http.get<SearchResult>(movieDbEndpoint + "search/movie", { params: options });
     }

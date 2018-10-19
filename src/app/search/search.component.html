@@ -4,9 +4,13 @@
     </mat-form-field>
     <button mat-raised-button (click)="getSearchResult(filmName.value)" class="search-button">Search</button>
 </mat-card>
-<div class="films-container">
+<div *ngIf="result" class="films-container">
     <mat-card class="film" *ngFor="let film of result" (click)="goToFilmDetail(film.id)">
         <div class="movie-poster"><img [src]="getMoviePoster(film)"></div>
         <div class="movie-title" [matTooltip]="getMovieTitleString(film)">{{getMovieTitleString(film)}}</div>
     </mat-card>
+    <mat-paginator [length]="paginatorLength"
+              [pageSize]="pageSize"
+              (page)="getNextPage(filmName.value, $event)">
+    </mat-paginator>
 </div>

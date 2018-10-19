@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TheMovieDbService } from '../the-moviedb.service';
+import { PageEvent } from '@angular/material';
 
 @Component({
     selector: 'app-search',
@@ -10,6 +11,8 @@ import { TheMovieDbService } from '../the-moviedb.service';
 export class SearchComponent implements OnInit {
 
     public result: SearchResultFilmListItem[];
+    public paginatorLength: number;
+    public pageSize: number;
 
     constructor(
         private theMovieDbService: TheMovieDbService,
@@ -21,8 +24,20 @@ export class SearchComponent implements OnInit {
 
     public getSearchResult(filmName: string) {
         this.theMovieDbService.getSearchResult(filmName).subscribe(result => {
-            this.result = result.results;
+            this.handleSearchResult(result);
         });
+    }
+
+    public getNextPage(movieName: String, pageEvent: PageEvent) {
+        this.theMovieDbService.getSearchResult(movieName, pageEvent.pageIndex).subscribe(result => {
+            this.handleSearchResult(result);
+        });
+    }
+
+    private handleSearchResult(result: SearchResult): void {
+        this.result = result.results;
+        this.paginatorLength = result.total_results;
+        this.pageSize = result.total_pages > 1 ? 20 : result.total_results;
     }
 
     private getYear(releaseDate: string): String {
@@ -38,7 +53,12 @@ export class SearchComponent implements OnInit {
     }
 
     public getMoviePoster(movie: SearchResultFilmListItem): String {
-        return this.theMovieDbService.getMoviePoster(movie.poster_path);
+        if (movie.poster_path) {
+            return this.theMovieDbService.getMoviePoster(movie.poster_path);
+        } else {
+            return "../../assets/128px-Popcorn.svg.png";
+        }
+
     }
 
 }
