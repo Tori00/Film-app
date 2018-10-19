@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TheMovieDbService } from '../the-moviedb.service';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
 import { MovieDetail } from '../model';
 import { OwnDbService } from '../own-db.service';
 
@@ -13,6 +12,8 @@ import { OwnDbService } from '../own-db.service';
 export class FilmDetailComponent implements OnInit {
 
     public movieDetail: MovieDetail;
+    public isWatched: boolean;
+    public isToBeWatched: boolean;
 
     constructor(
         private theMovieDbService: TheMovieDbService,
@@ -24,6 +25,14 @@ export class FilmDetailComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.theMovieDbService.getMovieDetail(params["id"]).subscribe(result => {
                 this.movieDetail = result;
+            });
+
+            this.ownDbService.isMovieWatched(params["id"]).subscribe(result => {
+                this.isWatched = result;
+            });
+
+            this.ownDbService.isMovieToBeWatched(params["id"]).subscribe(result => {
+                this.isToBeWatched = result;
             });
         });
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { MovieIdName } from "./model";
 import { watchedListEndpoint, toWatchListEndpoint } from "./endpoints";
@@ -15,6 +15,18 @@ export class OwnDbService {
 
     public getToWatchMovieList(): Observable<MovieIdName[]> {
         return this.http.get<MovieIdName[]>(toWatchListEndpoint);
+    }
+
+    public isMovieWatched(movieId: number): Observable<boolean> {
+        return of(true);
+    }
+
+    public isMovieToBeWatched(movieId: number): Observable<boolean> {
+        return of(true);
+    }
+
+    public getWatchedMovie(movieId: number): Observable<MovieIdName> {
+        return this.http.get<MovieIdName>(watchedListEndpoint + "/" + movieId);
     }
 
     public addMovieToWatchedMovieList(movieId: number, movieName: String): void {
