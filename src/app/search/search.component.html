@@ -1,9 +1,9 @@
-<div class="search">
+<mat-card class="search">
     <mat-form-field>
         <input matInput placeholder="Film name" #filmName>
     </mat-form-field>
     <button mat-raised-button (click)="getSearchResult(filmName.value)" class="search-button">Search</button>
-</div>
+</mat-card>
 <div class="films-container">
     <mat-card class="film" *ngFor="let film of result" (click)="goToFilmDetail(film.id)">
         <div class="movie-poster"><img [src]="getMoviePoster(film)"></div>
