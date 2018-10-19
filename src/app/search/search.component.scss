@@ -9,10 +9,27 @@
 
 .films-container {
     margin: 50px;
+    align-items: center;
+    text-align: center;
 }
 
 .film {
     display: inline-block;
     margin: 20px;
-    width: 128px;
+    width: 200px;
+    align-items: center;
+    text-align: center;
+}
+
+.movie-poster{
+    width: 200px;
+    height: 282px;
+}
+
+.movie-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 15px;
+    font-weight: bold;
 }

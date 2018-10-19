@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
     public result: SearchResultFilmListItem[];
 
     constructor(
-        private searchService: TheMovieDbService,
+        private theMovieDbService: TheMovieDbService,
         private router: Router
     ) { }
 
@@ -20,17 +20,25 @@ export class SearchComponent implements OnInit {
     }
 
     public getSearchResult(filmName: string) {
-        this.searchService.getSearchResult(filmName).subscribe(result => {
+        this.theMovieDbService.getSearchResult(filmName).subscribe(result => {
             this.result = result.results;
         });
     }
 
-    public getYear(releaseDate: string): String {
+    private getYear(releaseDate: string): String {
         return releaseDate.substring(0, 4);
+    }
+
+    public getMovieTitleString(movie: SearchResultFilmListItem): String {
+        return movie.original_title + " (" + this.getYear(movie.release_date.toString()) + ")";
     }
 
     public goToFilmDetail(id: number): void {
         this.router.navigateByUrl("film/" + id);
+    }
+
+    public getMoviePoster(movie: SearchResultFilmListItem): String {
+        return this.theMovieDbService.getMoviePoster(movie.poster_path);
     }
 
 }
