@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { of } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { apiKey, movieDbEndpoint, MovieDetail, posterEndpoint } from "./model";
+import { MovieDetail } from "./model";
+import { movieDbEndpoint, apiKey, posterEndpoint } from "./endpoints";
 
 @Injectable()
 export class TheMovieDbService {

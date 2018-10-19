@@ -1,14 +1,30 @@
+$poster-width: 185px;
+
 .film {
     margin: 50px;
 
     .poster {
-        display: inline-block;
+       float: left;
+       width: $poster-width;
     }
     
     .text-content {
-        display: inline-block;
-        margin-left: 20px;
+        margin-left: $poster-width + 20px;
         margin-right: 20px;
         vertical-align: top;
+
+        .genres {
+            font-weight: bold;
+            
+        }
+
+        i {
+            margin: 10px;
+            cursor: pointer;
+        }
     }
+}
+
+.small-bottom-margin {
+    margin-bottom: 10px;
 }

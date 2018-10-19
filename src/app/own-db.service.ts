@@ -1,0 +1,35 @@
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { MovieIdName } from "./model";
+import { watchedListEndpoint, toWatchListEndpoint } from "./endpoints";
+
+@Injectable()
+export class OwnDbService {
+
+    constructor(private http: HttpClient) { }
+
+    public getWatchedMovieList(): Observable<MovieIdName[]> {
+        return this.http.get<MovieIdName[]>(watchedListEndpoint);
+    }
+
+    public getToWatchMovieList(): Observable<MovieIdName[]> {
+        return this.http.get<MovieIdName[]>(toWatchListEndpoint);
+    }
+
+    public addMovieToWatchedMovieList(movieId: number, movieName: String): void {
+        this.http.post(watchedListEndpoint, this.convertToMovieIdName(movieId, movieName))
+            .subscribe(result => console.log(result));
+    }
+
+    public addMovieToToBeWatchedMovieList(movieId: number, movieName: String): void {
+        this.http.post(toWatchListEndpoint, this.convertToMovieIdName(movieId, movieName)).subscribe();
+    }
+
+    private convertToMovieIdName(movieId: number, movieName: String): MovieIdName {
+        return {
+            id: movieId,
+            name: movieName
+        };
+    }
+}

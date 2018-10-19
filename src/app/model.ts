@@ -1,10 +1,3 @@
-export const movieDbEndpoint = "https://api.themoviedb.org/3/";
-export const posterEndpoint = "http://image.tmdb.org/t/p/w185//";
-
-
-
-export const apiKey = "0b85953e9f18d90a34b537b03e1513bc";
-
 export class MovieDetail {
     adult: boolean;
     backdrop_path: String;
@@ -44,5 +37,10 @@ export class ProductionCountries {
 
 export class SpokenLanguages {
     iso_639_1: String;
+    name: String;
+}
+
+export class MovieIdName {
+    id: number;
     name: String;
 }

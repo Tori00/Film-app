@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OwnDbService } from '../own-db.service';
 
 @Component({
     selector: 'app-to-watch-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToWatchListComponent implements OnInit {
 
-    constructor() { }
+    constructor(private ownDbService: OwnDbService) { }
 
     ngOnInit() {
+    }
+
+    private getMovieList(): void {
+        this.ownDbService.getToWatchMovieList().subscribe(result => console.log(result));
     }
 
 }

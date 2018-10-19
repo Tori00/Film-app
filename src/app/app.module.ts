@@ -48,6 +48,7 @@ import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { TheMovieDbService } from './the-moviedb.service';
 import { WatchedListComponent } from './watched-list/watched-list.component';
 import { ToWatchListComponent } from './to-watch-list/to-watch-list.component';
+import { OwnDbService } from './own-db.service';
 
 @NgModule({
     declarations: [
@@ -137,7 +138,8 @@ import { ToWatchListComponent } from './to-watch-list/to-watch-list.component';
         MatTreeModule
     ],
     providers: [
-        TheMovieDbService
+        TheMovieDbService,
+        OwnDbService
     ],
     bootstrap: [AppComponent]
 })

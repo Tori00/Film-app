@@ -2,9 +2,12 @@
     <div class="poster"><img [src]="getMoviePoster()" /></div>
     <div class="text-content">
         <h1>{{movieDetail.original_title}} ({{getYear(movieDetail.release_date)}}) </h1>
-        <div>Genre(s): <span *ngFor="let genre of movieDetail.genres">{{genre.name}}, </span></div>
-        <div>{{movieDetail.overview}}</div>
-        <div>Duration: {{movieDetail.runtime}}</div>
-        <div></div>
+        <div class="genres small-bottom-margin">Genre(s): {{getGenres()}}</div>
+        <div class="small-bottom-margin">{{movieDetail.overview}}</div>
+        <div>Duration: {{movieDetail.runtime}} mintues</div>
+        <div class="icons">
+            <i class="material-icons" (click)="addMovieToWatchedList()" tooltip="I watched the movie">movie</i>
+            <i class="material-icons" (click)="addMovieToToBeWatchList()" tooltip="I want to watch the movie">playlist_add</i>
+        </div>
     </div>
 </div>
