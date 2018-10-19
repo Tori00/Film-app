@@ -46,13 +46,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { TheMovieDbService } from './the-moviedb.service';
+import { WatchedListComponent } from './watched-list/watched-list.component';
+import { ToWatchListComponent } from './to-watch-list/to-watch-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         SearchComponent,
         SidenavComponent,
-        FilmDetailComponent
+        FilmDetailComponent,
+        WatchedListComponent,
+        ToWatchListComponent
     ],
     imports: [
         BrowserModule,
