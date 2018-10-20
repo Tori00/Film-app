@@ -1,7 +1,7 @@
 <div class="film" *ngIf="movieDetail">
     <div class="poster"><img [src]="getMoviePoster()" /></div>
     <div class="text-content">
-        <h1>{{movieDetail.original_title}} ({{getYear(movieDetail.release_date)}}) </h1>
+        <h1>{{movieTitle}}</h1>
         <div class="genres small-bottom-margin">Genre(s): {{getGenres()}}</div>
         <div class="small-bottom-margin">{{movieDetail.overview}}</div>
         <div>Duration: {{movieDetail.runtime}} mintues</div>

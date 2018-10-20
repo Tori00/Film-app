@@ -3,6 +3,7 @@ import { TheMovieDbService } from '../the-moviedb.service';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetail } from '../model';
 import { OwnDbService } from '../own-db.service';
+import { getMovieTitleString } from '../functions';
 
 @Component({
     selector: 'app-film-detail',
@@ -14,6 +15,7 @@ export class FilmDetailComponent implements OnInit {
     public movieDetail: MovieDetail;
     public isWatched: boolean;
     public isToBeWatched: boolean;
+    public movieTitle: String;
 
     constructor(
         private theMovieDbService: TheMovieDbService,
@@ -25,6 +27,7 @@ export class FilmDetailComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.theMovieDbService.getMovieDetail(params["id"]).subscribe(result => {
                 this.movieDetail = result;
+                this.movieTitle = getMovieTitleString(result.original_title, result.release_date);
             });
 
             this.ownDbService.isMovieWatched(params["id"]).subscribe(result => {
@@ -40,10 +43,6 @@ export class FilmDetailComponent implements OnInit {
 
     public getMoviePoster(): String {
         return this.theMovieDbService.getMoviePoster(this.movieDetail.poster_path);
-    }
-
-    public getYear(releaseDate: string): String {
-        return releaseDate.substring(0, 4);
     }
 
     public getGenres(): String {

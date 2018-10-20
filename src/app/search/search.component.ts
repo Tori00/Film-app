@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TheMovieDbService } from '../the-moviedb.service';
 import { PageEvent } from '@angular/material';
+import { getMovieTitleString } from '../functions';
 
 @Component({
     selector: 'app-search',
@@ -41,12 +42,8 @@ export class SearchComponent implements OnInit {
         this.pageSize = result.total_pages > 1 ? 20 : result.total_results;
     }
 
-    private getYear(releaseDate: string): String {
-        return releaseDate.substring(0, 4);
-    }
-
     public getMovieTitleString(movie: SearchResultFilmListItem): String {
-        return movie.original_title + " (" + this.getYear(movie.release_date.toString()) + ")";
+        return getMovieTitleString(movie.original_title, movie.release_date);
     }
 
     public goToFilmDetail(id: number): void {
