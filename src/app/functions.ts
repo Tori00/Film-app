@@ -3,5 +3,9 @@ function getYear(releaseDate: string): String {
 }
 
 export function getMovieTitleString(title: String, releaseDate: String): String {
-    return title + " (" + getYear(releaseDate.valueOf()) + ")";
+    if (releaseDate) {
+        return title + " (" + getYear(releaseDate.valueOf()) + ")";
+    } else {
+        return title;
+    }
 }
