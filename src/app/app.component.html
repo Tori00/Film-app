@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <a routerLink="/search" class="app-title">Film app</a>
+        <span class="spacer"></span>
+        <i class="material-icons" routerLink="/watched" matTooltip="Watched Movies">movie</i>
+        <i class="material-icons" routerLink="/towatch" matTooltip="Want to watch movies">playlist_add</i>
     </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
