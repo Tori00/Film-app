@@ -55,11 +55,13 @@ export class FilmDetailComponent implements OnInit {
     }
 
     public addMovieToWatchedList() {
-        this.ownDbService.addMovieToWatchedMovieList(this.movieDetail.id, this.movieDetail.original_title);
+        this.ownDbService.addMovieToWatchedMovieList(
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
     }
 
     public addMovieToToBeWatchList() {
-        this.ownDbService.addMovieToToBeWatchedMovieList(this.movieDetail.id, this.movieDetail.original_title);
+        this.ownDbService.addMovieToToBeWatchedMovieList(
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
     }
 
 }

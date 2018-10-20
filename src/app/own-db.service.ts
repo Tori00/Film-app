@@ -38,6 +38,10 @@ export class OwnDbService {
         this.http.post(toWatchListEndpoint, this.convertToMovieIdName(movieId, movieName)).subscribe();
     }
 
+    public deleteMovieFromToWatchList(movieId): void {
+        this.http.delete(toWatchListEndpoint + "/" + movieId);
+    }
+
     private convertToMovieIdName(movieId: number, movieName: String): MovieIdName {
         return {
             id: movieId,
