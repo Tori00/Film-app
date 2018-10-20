@@ -2,6 +2,11 @@
     text-align: center;
     margin: 30px;
 
+    .search-content {
+        width: 400px;
+        display: inline-block;
+    }
+
     .search-button {
         margin-left: 20px;
     }
@@ -11,6 +16,11 @@
     margin: 50px;
     align-items: center;
     text-align: center;
+
+    .paginator {
+        width: 80%;
+        display: inline-block;
+    }
 }
 
 .film {

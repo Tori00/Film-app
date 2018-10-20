@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit {
     public getNextPage(movieName: String, pageEvent: PageEvent) {
         this.theMovieDbService.getSearchResult(movieName, pageEvent.pageIndex).subscribe(result => {
             this.handleSearchResult(result);
+            window.scrollTo(0, 0);
         });
     }
 
