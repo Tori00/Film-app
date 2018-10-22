@@ -1,3 +1,5 @@
+@import "./../variable.scss";
+
 .search {
     text-align: center;
     margin: 30px;
@@ -30,11 +32,11 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
-}
 
-.movie-poster{
-    width: 200px;
-    height: 282px;
+    img {
+        width: $poster-width;
+        height: $poster-height;
+    }
 }
 
 .movie-title {

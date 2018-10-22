@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TheMovieDbService } from '../the-moviedb.service';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatSnackBar } from '@angular/material';
 import { getMovieTitleString } from '../functions';
 
 @Component({
@@ -17,7 +17,8 @@ export class SearchComponent implements OnInit {
 
     constructor(
         private theMovieDbService: TheMovieDbService,
-        private router: Router
+        private router: Router,
+        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -37,9 +38,15 @@ export class SearchComponent implements OnInit {
     }
 
     private handleSearchResult(result: SearchResult): void {
-        this.result = result.results;
-        this.paginatorLength = result.total_results;
-        this.pageSize = result.total_pages > 1 ? 20 : result.total_results;
+        if (result.results.length !== 0) {
+            this.result = result.results;
+            this.paginatorLength = result.total_results;
+            this.pageSize = result.total_pages > 1 ? 20 : result.total_results;
+        }
+        else {
+            this.result = undefined;
+            this.snackBar.open("There is no result for this search!", '', { duration: 5000 });
+        }
     }
 
     public getMovieTitleString(movie: SearchResultFilmListItem): String {

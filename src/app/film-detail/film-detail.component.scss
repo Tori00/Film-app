@@ -1,16 +1,27 @@
-$poster-width: 185px;
+@import "./../variable.scss";
+
+$mat-card-padding: 24px;
 
 .film {
-    margin: 50px;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
 
     .poster {
        float: left;
        width: $poster-width;
+       height: $poster-height;
+
+       img {
+            height: $poster-height;
+            width: $poster-width;
+       }
     }
     
     .text-content {
         margin-left: $poster-width + 20px;
         vertical-align: top;
+        min-height: $poster-height - 2*$mat-card-padding;
 
         .genres {
             font-weight: bold;
@@ -24,7 +35,10 @@ $poster-width: 185px;
 }
 
 .comments {
-    margin: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .small-bottom-margin {
