@@ -1,8 +1,0 @@
-<div>
-    <mat-list *ngFor="let movie of movies">
-        <mat-list-item>
-            <a routerLink="/film/{{movie.id}}">{{movie.name}}</a>
-            <i class="material-icons" (click)="deleteMovieFromToWatchList(movie.id)">movie</i>
-        </mat-list-item>
-    </mat-list>
-</div>

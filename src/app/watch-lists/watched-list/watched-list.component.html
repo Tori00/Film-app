@@ -1,0 +1,10 @@
+<div>
+    <mat-card class="to-watch-list">
+        <h1>Watched list</h1>
+        <mat-list *ngFor="let movie of movies">
+            <mat-list-item>
+                <a class="movie-name" routerLink="/film/{{movie.id}}">{{movie.name}}</a>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>

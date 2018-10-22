@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { OwnDbService } from '../own-db.service';
-import { MovieIdName } from '../model';
+import { OwnDbService } from '../../own-db.service';
+import { MovieIdName } from '../../model';
 
 @Component({
-    selector: 'app-to-watch-list',
+    selector: 'to-watch-list',
     templateUrl: './to-watch-list.component.html',
     styleUrls: ['./to-watch-list.component.scss']
 })
@@ -14,11 +14,15 @@ export class ToWatchListComponent implements OnInit {
     constructor(private ownDbService: OwnDbService) { }
 
     ngOnInit() {
-        this.ownDbService.getToWatchMovieList().subscribe(result => this.movies = result);
+        this.getMovies();
     }
 
     public deleteMovieFromToWatchList(id: number): void {
-        this.ownDbService.deleteMovieFromToWatchList(id);
+        this.ownDbService.deleteMovieFromToWatchList(id).subscribe(result => this.getMovies());
+    }
+
+    public getMovies() {
+        this.ownDbService.getToWatchMovieList().subscribe(result => this.movies = result);
     }
 
 }

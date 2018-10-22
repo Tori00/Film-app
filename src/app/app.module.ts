@@ -46,9 +46,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { TheMovieDbService } from './the-moviedb.service';
-import { WatchedListComponent } from './watched-list/watched-list.component';
-import { ToWatchListComponent } from './to-watch-list/to-watch-list.component';
 import { OwnDbService } from './own-db.service';
+import { WatchListsComponent } from './watch-lists/watch-lists.component';
+import { WatchedListComponent } from './watch-lists/watched-list/watched-list.component';
+import { ToWatchListComponent } from './watch-lists/to-watch-list/to-watch-list.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { OwnDbService } from './own-db.service';
         SidenavComponent,
         FilmDetailComponent,
         WatchedListComponent,
-        ToWatchListComponent
+        ToWatchListComponent,
+        WatchListsComponent
     ],
     imports: [
         BrowserModule,

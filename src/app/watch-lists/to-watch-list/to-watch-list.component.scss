@@ -1,0 +1,14 @@
+.to-watch-list {
+    margin: 20px;
+
+    .movie-name {
+        text-decoration: none;
+        text-transform: none;
+        color: red;
+    }
+}
+
+.delete-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}

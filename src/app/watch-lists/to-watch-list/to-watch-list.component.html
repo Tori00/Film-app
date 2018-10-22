@@ -1,0 +1,11 @@
+<div>
+    <mat-card class="to-watch-list">
+        <h1>To watch list</h1>
+        <mat-list *ngFor="let movie of movies">
+            <mat-list-item>
+                <a class="movie-name" routerLink="/film/{{movie.id}}">{{movie.name}}</a>
+                <i class="material-icons delete-icon" (click)="deleteMovieFromToWatchList(movie.id)">highlight_off</i>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>
