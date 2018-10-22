@@ -6,8 +6,13 @@
         <div class="small-bottom-margin">{{movieDetail.overview}}</div>
         <div>Duration: {{movieDetail.runtime}} mintues</div>
         <div class="icons">
-            <i [ngClass]="{'green-color': isWatched}" class="material-icons" (click)="addMovieToWatchedList()" matTooltip="I watched the movie">movie</i>
-            <i [ngClass]="{'green-color': isToBeWatched}" class="material-icons" (click)="addMovieToToBeWatchList()" matTooltip="I want to watch the movie">playlist_add</i>
+            <i [ngClass]="{'green-color': isWatched}" class="material-icons" (click)="addMovieToWatchedList()"
+                matTooltip="I watched the movie">movie</i>
+            <i [ngClass]="{'green-color': isToBeWatched}" class="material-icons" (click)="addMovieToToBeWatchList()"
+                matTooltip="I want to watch the movie">playlist_add</i>
         </div>
     </mat-card>
 </div>
+<mat-card class="comments">
+    <h1>Comments</h1>
+</mat-card>

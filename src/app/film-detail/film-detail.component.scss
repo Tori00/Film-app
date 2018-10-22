@@ -10,7 +10,6 @@ $poster-width: 185px;
     
     .text-content {
         margin-left: $poster-width + 20px;
-        margin-right: 20px;
         vertical-align: top;
 
         .genres {
@@ -22,6 +21,10 @@ $poster-width: 185px;
             cursor: pointer;
         }
     }
+}
+
+.comments {
+    margin: 50px;
 }
 
 .small-bottom-margin {
