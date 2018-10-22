@@ -3,6 +3,7 @@ import { Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { MovieIdName } from "./model";
 import { watchedListEndpoint, toWatchListEndpoint } from "./endpoints";
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class OwnDbService {
@@ -18,15 +19,29 @@ export class OwnDbService {
     }
 
     public isMovieWatched(movieId: number): Observable<boolean> {
-        return of(true);
+        return this.getWatchedMovie(movieId).pipe(map(result => {
+            if (result)
+                return true;
+            else
+                return false;
+        }));
     }
 
     public isMovieToBeWatched(movieId: number): Observable<boolean> {
-        return of(true);
+        return this.getToWatchMovie(movieId).pipe(map(result => {
+            if (result)
+                return true;
+            else
+                return false;
+        }));
     }
 
     public getWatchedMovie(movieId: number): Observable<MovieIdName> {
         return this.http.get<MovieIdName>(watchedListEndpoint + "/" + movieId);
+    }
+
+    public getToWatchMovie(movieId: number): Observable<MovieIdName> {
+        return this.http.get<MovieIdName>(toWatchListEndpoint + "/" + movieId);
     }
 
     public addMovieToWatchedMovieList(movieId: number, movieName: String): void {

@@ -23,7 +23,7 @@ export class FilmDetailComponent implements OnInit {
         private route: ActivatedRoute
     ) { }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.theMovieDbService.getMovieDetail(params["id"]).subscribe(result => {
                 this.movieDetail = result;
@@ -59,9 +59,17 @@ export class FilmDetailComponent implements OnInit {
             this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
     }
 
-    public addMovieToToBeWatchList() {
+    public addMovieToToBeWatchList(): void {
         this.ownDbService.addMovieToToBeWatchedMovieList(
             this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
+    }
+
+    public isWatchedMovie(): void {
+        this.ownDbService.isMovieWatched(this.movieDetail.id).subscribe(result => this.isWatched = result);
+    }
+
+    public isToBeWatchedMovie(): void {
+        this.ownDbService.isMovieToBeWatched(this.movieDetail.id).subscribe(result => this.isToBeWatched = result);
     }
 
 }
