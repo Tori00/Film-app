@@ -1,6 +1,6 @@
 <div class="film" *ngIf="movieDetail">
     <div class="poster"><img [src]="getMoviePoster()" /></div>
-    <div class="text-content">
+    <mat-card class="text-content">
         <h1>{{movieTitle}}</h1>
         <div class="genres small-bottom-margin">Genre(s): {{getGenres()}}</div>
         <div class="small-bottom-margin">{{movieDetail.overview}}</div>
@@ -9,5 +9,5 @@
             <i [ngClass]="{'green-color': isWatched}" class="material-icons" (click)="addMovieToWatchedList()" matTooltip="I watched the movie">movie</i>
             <i [ngClass]="{'green-color': isToBeWatched}" class="material-icons" (click)="addMovieToToBeWatchList()" matTooltip="I want to watch the movie">playlist_add</i>
         </div>
-    </div>
+    </mat-card>
 </div>
