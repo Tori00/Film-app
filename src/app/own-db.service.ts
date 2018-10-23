@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { MovieIdName } from "./model";
-import { watchedListEndpoint, toWatchListEndpoint } from "./endpoints";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { MovieIdName, MovieComment } from "./model";
+import { watchedListEndpoint, toWatchListEndpoint, commentEndpoint } from "./endpoints";
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -53,8 +53,18 @@ export class OwnDbService {
         this.http.post(toWatchListEndpoint, this.convertToMovieIdName(movieId, movieName)).subscribe();
     }
 
-    public deleteMovieFromToWatchList(movieId): Observable<Object> {
+    public deleteMovieFromToWatchList(movieId: number): Observable<Object> {
         return this.http.delete(toWatchListEndpoint + "/" + movieId);
+    }
+
+    public getComments(movieId: number): Observable<MovieComment[]> {
+        const options = new HttpParams().set('movieid', movieId.toString());
+
+        return this.http.get<MovieComment[]>(commentEndpoint, { params: options})
+    }
+
+    public postComment(comment: MovieComment): Observable<Object> {
+        return this.http.post(commentEndpoint, comment);
     }
 
     private convertToMovieIdName(movieId: number, movieName: String): MovieIdName {

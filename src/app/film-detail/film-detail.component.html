@@ -13,6 +13,23 @@
         </div>
     </mat-card>
 </div>
-<mat-card class="comments">
+<mat-card *ngIf="movieDetail" class="comments">
     <h1>Comments</h1>
+    <div *ngFor="let comment of comments">
+        <div class="comment-name">{{comment.username}}</div>
+        <div class="comment-text">{{comment.comment}}</div>
+        <mat-divider></mat-divider>
+    </div>
+    <div class="write-comment">
+        <h1>Write comment</h1>
+        <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="commentUsername">
+        </mat-form-field>
+
+        <mat-form-field class="comment-textarea">
+            <textarea matInput placeholder="Comment" [(ngModel)]="commentText" #comment></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="postComment()" class="search-button">Post</button>
+    </div>
 </mat-card>

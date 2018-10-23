@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TheMovieDbService } from '../the-moviedb.service';
 import { ActivatedRoute } from '@angular/router';
-import { MovieDetail } from '../model';
+import { MovieDetail, MovieComment } from '../model';
 import { OwnDbService } from '../own-db.service';
 import { getMovieTitleString } from '../functions';
 
@@ -16,6 +16,9 @@ export class FilmDetailComponent implements OnInit {
     public isWatched: boolean;
     public isToBeWatched: boolean;
     public movieTitle: String;
+    public comments: MovieComment[] = [];
+    public commentUsername: String;
+    public commentText: String;
 
     constructor(
         private theMovieDbService: TheMovieDbService,
@@ -28,6 +31,8 @@ export class FilmDetailComponent implements OnInit {
             this.theMovieDbService.getMovieDetail(params["id"]).subscribe(result => {
                 this.movieDetail = result;
                 this.movieTitle = getMovieTitleString(result.original_title, result.release_date);
+
+                this.getComments();
             });
 
             this.ownDbService.isMovieWatched(params["id"]).subscribe(result => {
@@ -72,4 +77,24 @@ export class FilmDetailComponent implements OnInit {
         this.ownDbService.isMovieToBeWatched(this.movieDetail.id).subscribe(result => this.isToBeWatched = result);
     }
 
+    public postComment(): void {
+        let comment: MovieComment = {
+            comment: this.commentText,
+            movieid: this.movieDetail.id,
+            username: this.commentUsername
+        }
+
+        this.ownDbService.postComment(comment).subscribe(result => {
+            this.getComments();
+
+            this.commentText = "";
+            this.commentUsername = "";
+        });
+    }
+
+    private getComments(): void {
+        this.ownDbService.getComments(this.movieDetail.id).subscribe(result => 
+            this.comments = result
+            );
+    }
 }

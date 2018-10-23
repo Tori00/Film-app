@@ -44,3 +44,10 @@ export class MovieIdName {
     id: number;
     name: String;
 }
+
+export class MovieComment {
+    id?: number;
+    username: String;
+    comment: String;
+    movieid: number;
+}
