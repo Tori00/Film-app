@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TheMovieDbService } from '../the-moviedb.service';
 import { PageEvent, MatSnackBar } from '@angular/material';
 import { getMovieTitleString } from '../functions';
+import { SearchResultFilmListItem, SearchResult } from '../model';
 
 @Component({
     selector: 'app-search',

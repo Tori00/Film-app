@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { MovieDetail } from "./model";
+import { MovieDetail, SearchResult } from "./model";
 import { movieDbEndpoint, apiKey, posterEndpoint } from "./endpoints";
 
 @Injectable()
