@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieDetail, MovieComment } from '../model';
 import { OwnDbService } from '../own-db.service';
 import { getMovieTitleString } from '../functions';
+import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-film-detail',
@@ -23,25 +25,27 @@ export class FilmDetailComponent implements OnInit {
     constructor(
         private theMovieDbService: TheMovieDbService,
         private ownDbService: OwnDbService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private snackBar: MatSnackBar
     ) { }
 
     public ngOnInit(): void {
         this.route.params.subscribe(params => {
-            this.theMovieDbService.getMovieDetail(params["id"]).subscribe(result => {
-                this.movieDetail = result;
-                this.movieTitle = getMovieTitleString(result.original_title, result.release_date);
+            this.theMovieDbService.getMovieDetail(params["id"]).subscribe(
+                result => {
+                    this.movieDetail = result;
+                    this.movieTitle = getMovieTitleString(result.original_title, result.release_date);
 
-                this.getComments();
-            });
-
-            this.ownDbService.isMovieWatched(params["id"]).subscribe(result => {
-                this.isWatched = result;
-            });
-
-            this.ownDbService.isMovieToBeWatched(params["id"]).subscribe(result => {
-                this.isToBeWatched = result;
-            });
+                    this.isToBeWatchedMovie();
+                    this.isWatchedMovie();
+                    this.getComments();
+                },
+                (error: HttpErrorResponse) => {
+                    if (error.status == 404)
+                        this.snackBar.open("There is no film with this id!", '', { duration: 4000 });
+                    else
+                        this.showCommonErrorSanckBar();
+                });
         });
 
     }
@@ -61,20 +65,38 @@ export class FilmDetailComponent implements OnInit {
 
     public addMovieToWatchedList() {
         this.ownDbService.addMovieToWatchedMovieList(
-            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date))
+            .subscribe(
+                () => this.isWatched = true,
+                error => this.showCommonErrorSanckBar()
+            );
     }
 
     public addMovieToToBeWatchList(): void {
         this.ownDbService.addMovieToToBeWatchedMovieList(
-            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date));
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date))
+            .subscribe(
+                () => this.isToBeWatched = true,
+                error => this.showCommonErrorSanckBar()
+            );
     }
 
     public isWatchedMovie(): void {
-        this.ownDbService.isMovieWatched(this.movieDetail.id).subscribe(result => this.isWatched = result);
+        this.ownDbService.isMovieWatched(this.movieDetail.id).subscribe(
+            result => this.isWatched = result,
+            error => {
+                if (error.status !== 404)
+                    this.showCommonErrorSanckBar();
+            });
     }
 
     public isToBeWatchedMovie(): void {
-        this.ownDbService.isMovieToBeWatched(this.movieDetail.id).subscribe(result => this.isToBeWatched = result);
+        this.ownDbService.isMovieToBeWatched(this.movieDetail.id).subscribe(
+            result => this.isToBeWatched = result,
+            error => {
+                if (error.status !== 404)
+                    this.showCommonErrorSanckBar();
+            });
     }
 
     public postComment(): void {
@@ -84,17 +106,28 @@ export class FilmDetailComponent implements OnInit {
             username: this.commentUsername
         }
 
-        this.ownDbService.postComment(comment).subscribe(result => {
-            this.getComments();
+        this.ownDbService.postComment(comment).subscribe(
+            () => {
+                this.getComments();
 
-            this.commentText = "";
-            this.commentUsername = "";
-        });
+                this.commentText = "";
+                this.commentUsername = "";
+            },
+            error => this.snackBar.open("There was an error while posting the comment!", '', { duration: 4000 })
+        );
     }
 
     private getComments(): void {
-        this.ownDbService.getComments(this.movieDetail.id).subscribe(result => 
-            this.comments = result
-            );
+        this.ownDbService.getComments(this.movieDetail.id).subscribe(
+            result => this.comments = result,
+            (error: HttpErrorResponse) => {
+                this.snackBar.open("There was an error while loading comments!", '', { duration: 4000 });
+                console.log(error.message);
+            }
+        );
+    }
+
+    private showCommonErrorSanckBar() {
+        this.snackBar.open("There was an error!", '', { duration: 4000 });
     }
 }

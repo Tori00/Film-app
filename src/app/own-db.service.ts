@@ -44,13 +44,12 @@ export class OwnDbService {
         return this.http.get<MovieIdName>(toWatchListEndpoint + "/" + movieId);
     }
 
-    public addMovieToWatchedMovieList(movieId: number, movieName: String): void {
-        this.http.post(watchedListEndpoint, this.convertToMovieIdName(movieId, movieName))
-            .subscribe(result => console.log(result));
+    public addMovieToWatchedMovieList(movieId: number, movieName: String): Observable<MovieIdName> {
+        return this.http.post<MovieIdName>(watchedListEndpoint, this.convertToMovieIdName(movieId, movieName));
     }
 
-    public addMovieToToBeWatchedMovieList(movieId: number, movieName: String): void {
-        this.http.post(toWatchListEndpoint, this.convertToMovieIdName(movieId, movieName)).subscribe();
+    public addMovieToToBeWatchedMovieList(movieId: number, movieName: String): Observable<MovieIdName> {
+        return this.http.post<MovieIdName>(toWatchListEndpoint, this.convertToMovieIdName(movieId, movieName));
     }
 
     public deleteMovieFromToWatchList(movieId: number): Observable<Object> {
