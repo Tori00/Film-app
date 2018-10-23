@@ -44,7 +44,6 @@ import {
 } from '@angular/material';
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { TheMovieDbService } from './the-moviedb.service';
 import { OwnDbService } from './own-db.service';
@@ -56,7 +55,6 @@ import { ToWatchListComponent } from './watch-lists/to-watch-list/to-watch-list.
     declarations: [
         AppComponent,
         SearchComponent,
-        SidenavComponent,
         FilmDetailComponent,
         WatchedListComponent,
         ToWatchListComponent,
