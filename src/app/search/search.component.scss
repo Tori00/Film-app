@@ -5,16 +5,16 @@
     margin: 30px;
 
     .search-content {
-        width: 400px;
+        width: 500px;
         display: inline-block;
     }
 
-    .search-button {
+    .left-margin {
         margin-left: 20px;
     }
 }
 
-.films-container {
+.movies-container {
     margin: 50px;
     align-items: center;
     text-align: center;
@@ -23,26 +23,26 @@
         width: 80%;
         display: inline-block;
     }
-}
 
-.film {
-    display: inline-block;
-    margin: 20px;
-    width: 200px;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
+    .movie {
+        display: inline-block;
+        margin: 20px;
+        width: 200px;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+    
+        img {
+            width: $poster-width;
+            height: $poster-height;
+        }
 
-    img {
-        width: $poster-width;
-        height: $poster-height;
+        .movie-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-top: 15px;
+            font-weight: bold;
+        }
     }
-}
-
-.movie-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-top: 15px;
-    font-weight: bold;
 }

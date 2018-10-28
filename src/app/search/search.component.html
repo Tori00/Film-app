@@ -1,16 +1,23 @@
 <div class="search">
     <mat-card class="search-content">
         <mat-form-field>
-            <input matInput placeholder="Film name" #filmName>
+            <input matInput placeholder="Movie name" [(ngModel)]="movieName">
         </mat-form-field>
-        <button mat-raised-button (click)="getSearchResult(filmName.value)" class="search-button">Search</button>
+        <button mat-raised-button (click)="getSearchResult()" class="left-margin">Search</button>
+        <button mat-raised-button (click)="deleteSearch()" class="left-margin">Delete search</button>
     </mat-card>
 </div>
-<div *ngIf="result" class="films-container">
-    <mat-card class="film" *ngFor="let film of result" (click)="goToFilmDetail(film.id)">
-        <div class="movie-poster"><img [src]="getMoviePoster(film)"></div>
-        <div class="movie-title" [matTooltip]="getMovieTitleString(film)">{{getMovieTitleString(film)}}</div>
+<div *ngIf="result" class="movies-container">
+    <mat-card class="movie" *ngFor="let movie of result" (click)="goToMovieDetail(movie.id)">
+        <div class="movie-poster"><img [src]="getMoviePoster(movie)"></div>
+        <div class="movie-title" [matTooltip]="getMovieTitleString(movie)">{{getMovieTitleString(movie)}}</div>
     </mat-card>
-    <mat-paginator class="paginator" [length]="paginatorLength" [pageSize]="pageSize" (page)="getNextPage(filmName.value, $event)">
+    <mat-paginator 
+        class="paginator" 
+        [pageIndex]="pageIndex"
+        [length]="paginatorLength"
+        [pageSize]="pageSize"
+        showFirstLastButtons="true"
+        (page)="getNextPage($event)">
     </mat-paginator>
 </div>

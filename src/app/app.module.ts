@@ -28,6 +28,7 @@ import { OwnDbService } from './own-db.service';
 import { WatchListsComponent } from './watch-lists/watch-lists.component';
 import { WatchedListComponent } from './watch-lists/watched-list/watched-list.component';
 import { ToWatchListComponent } from './watch-lists/to-watch-list/to-watch-list.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
     declarations: [
@@ -75,7 +76,8 @@ import { ToWatchListComponent } from './watch-lists/to-watch-list/to-watch-list.
     ],
     providers: [
         TheMovieDbService,
-        OwnDbService
+        OwnDbService,
+        SearchService
     ],
     bootstrap: [AppComponent]
 })
