@@ -28,7 +28,7 @@ export class ToWatchListComponent implements OnInit {
         );
     }
 
-    public getMovies() {
+    public getMovies(): void {
         this.ownDbService.getToWatchMovieList().subscribe(
             result => this.movies = result,
             error => this.snackbar.open("There was an error, while loading To Watch list!", '', { duration: 5000 })

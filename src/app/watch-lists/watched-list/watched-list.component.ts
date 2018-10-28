@@ -21,7 +21,7 @@ export class WatchedListComponent implements OnInit {
         this.getMovies();
     }
 
-    public getMovies() {
+    public getMovies(): void {
         this.ownDbService.getWatchedMovieList().subscribe(
             result => this.movies = result,
             error => this.snackbar.open("There was an error, while loading Watched list!", '', { duration: 5000 })
