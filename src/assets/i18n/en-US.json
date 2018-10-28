@@ -1,0 +1,19 @@
+{
+    "SEARCH": {
+        "MOVIE-NAME": "Movie name",
+        "SEARCH-BUTTON": "Search",
+        "DELETE-BUTTON": "Delete search"
+    },
+    "MOVIE-DETAIL": {
+        "GENRES": "Genre(s)",
+        "COMMENTS": "Comments",
+        "WRITE-COMMENT": "Write comment",
+        "POST": "Post"
+    },
+    "TO-WATCH": {
+        "TITLE": "To watch list"
+    },
+    "WATCHED": {
+        "TITLE": "Watched list"
+    }
+}

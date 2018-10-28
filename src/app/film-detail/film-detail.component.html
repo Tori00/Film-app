@@ -2,7 +2,7 @@
     <div class="poster"><img [src]="getMoviePoster()" /></div>
     <mat-card class="text-content">
         <h1>{{movieTitle}}</h1>
-        <div class="genres small-bottom-margin">Genre(s): {{getGenres()}}</div>
+        <div class="genres small-bottom-margin">{{ 'MOVIE-DETAIL.GENRES' | translate}}: {{getGenres()}}</div>
         <div class="small-bottom-margin">{{movieDetail.overview}}</div>
         <div>Duration: {{movieDetail.runtime}} mintues</div>
         <div class="icons">
@@ -14,14 +14,14 @@
     </mat-card>
 </div>
 <mat-card *ngIf="movieDetail" class="comments">
-    <h1>Comments</h1>
+    <h1>{{ 'MOVIE-DETAIL.COMMENTS' | translate}}</h1>
     <div *ngFor="let comment of comments">
         <div class="comment-name">{{comment.username}}</div>
         <div class="comment-text">{{comment.comment}}</div>
         <mat-divider></mat-divider>
     </div>
     <div class="write-comment">
-        <h1>Write comment</h1>
+        <h1>{{ 'MOVIE-DETAIL.WRITE-COMMENT' | translate}}</h1>
         <mat-form-field>
             <input matInput placeholder="Name" [(ngModel)]="commentUsername">
         </mat-form-field>
@@ -30,6 +30,6 @@
             <textarea matInput placeholder="Comment" [(ngModel)]="commentText" #comment></textarea>
         </mat-form-field>
 
-        <button mat-raised-button (click)="postComment()" class="search-button">Post</button>
+        <button mat-raised-button (click)="postComment()" class="search-button">{{ 'MOVIE-DETAIL.POST' | translate}}</button>
     </div>
 </mat-card>

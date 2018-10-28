@@ -1,10 +1,10 @@
 <div class="search">
     <mat-card class="search-content">
         <mat-form-field>
-            <input matInput placeholder="Movie name" [(ngModel)]="movieName">
+            <input matInput placeholder="{{'SEARCH.MOVIE-NAME' | translate }}" [(ngModel)]="movieName">
         </mat-form-field>
-        <button mat-raised-button (click)="getSearchResult()" class="left-margin">Search</button>
-        <button mat-raised-button (click)="deleteSearch()" class="left-margin">Delete search</button>
+        <button mat-raised-button (click)="getSearchResult()" class="left-margin">{{ 'SEARCH.SEARCH-BUTTON' | translate}}</button>
+        <button mat-raised-button (click)="deleteSearch()" class="left-margin">{{ 'SEARCH.DELETE-BUTTON' | translate}}</button>
     </mat-card>
 </div>
 <div *ngIf="result" class="movies-container">

@@ -75,3 +75,8 @@ export class MovieComment {
     comment: String;
     movieid: number;
 }
+
+export class NameValuePair {
+    name: String;
+    value: String;
+}

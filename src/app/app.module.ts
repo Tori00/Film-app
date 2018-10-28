@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import {
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatSelectModule,
 } from '@angular/material';
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,8 @@ import { WatchListsComponent } from './watch-lists/watch-lists.component';
 import { WatchedListComponent } from './watch-lists/watched-list/watched-list.component';
 import { ToWatchListComponent } from './watch-lists/to-watch-list/to-watch-list.component';
 import { SearchService } from './search/search.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './functions';
 
 @NgModule({
     declarations: [
@@ -57,7 +60,15 @@ import { SearchService } from './search/search.service';
         MatSnackBarModule,
         MatToolbarModule,
         MatTooltipModule,
-        AppRoutingModule
+        MatSelectModule,
+        AppRoutingModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     exports: [
         MatButtonModule,
@@ -72,7 +83,8 @@ import { SearchService } from './search/search.service';
         MatRippleModule,
         MatSnackBarModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSelectModule
     ],
     providers: [
         TheMovieDbService,

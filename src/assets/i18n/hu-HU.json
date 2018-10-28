@@ -1,0 +1,19 @@
+{
+    "SEARCH": {
+        "MOVIE-NAME": "Film neve",
+        "SEARCH-BUTTON": "Keresés",
+        "DELETE-BUTTON": "Keresés törlése"
+    },
+    "MOVIE-DETAIL": {
+        "GENRES": "Műfaj(ok)",
+        "COMMENTS": "Kommentek",
+        "WRITE-COMMENT": "Komment írása",
+        "POST": "Poszt"
+    },
+    "TO-WATCH": {
+        "TITLE": "To watch list"
+    },
+    "WATCHED": {
+        "TITLE": "Watched list"
+    }
+}

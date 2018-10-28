@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
     }
 
     public getMovieTitleString(movie: SearchResultFilmListItem): String {
-        return getMovieTitleString(movie.original_title, movie.release_date);
+        return getMovieTitleString(movie.title, movie.release_date);
     }
 
     public goToMovieDetail(id: number): void {

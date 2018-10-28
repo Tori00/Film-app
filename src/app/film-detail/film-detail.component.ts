@@ -34,7 +34,7 @@ export class FilmDetailComponent implements OnInit {
             this.theMovieDbService.getMovieDetail(params["id"]).subscribe(
                 result => {
                     this.movieDetail = result;
-                    this.movieTitle = getMovieTitleString(result.original_title, result.release_date);
+                    this.movieTitle = getMovieTitleString(result.title, result.release_date);
 
                     this.isToBeWatchedMovie();
                     this.isWatchedMovie();
@@ -65,7 +65,7 @@ export class FilmDetailComponent implements OnInit {
 
     public addMovieToWatchedList() {
         this.ownDbService.addMovieToWatchedMovieList(
-            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date))
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.title, this.movieDetail.release_date))
             .subscribe(
                 () => this.isWatched = true,
                 error => this.showCommonErrorSanckBar()
@@ -74,7 +74,7 @@ export class FilmDetailComponent implements OnInit {
 
     public addMovieToToBeWatchList(): void {
         this.ownDbService.addMovieToToBeWatchedMovieList(
-            this.movieDetail.id, getMovieTitleString(this.movieDetail.original_title, this.movieDetail.release_date))
+            this.movieDetail.id, getMovieTitleString(this.movieDetail.title, this.movieDetail.release_date))
             .subscribe(
                 () => this.isToBeWatched = true,
                 error => this.showCommonErrorSanckBar()

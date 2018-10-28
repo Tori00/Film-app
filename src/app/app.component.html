@@ -2,6 +2,14 @@
     <mat-toolbar-row>
         <a routerLink="/search" class="app-title">Movie app</a>
         <span class="spacer"></span>
+        <mat-form-field>
+            <mat-select (selectionChange)="changeLanguage($event.value)" [(ngModel)]="selectedLang">
+                <mat-option *ngFor="let language of languages"
+                    [value]="language.value">
+                    {{language.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <i class="material-icons" routerLink="/watchlist" matTooltip="Watching lists">movie</i>
     </mat-toolbar-row>
 </mat-toolbar>
