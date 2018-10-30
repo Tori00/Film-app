@@ -6,6 +6,8 @@ import { OwnDbService } from '../own-db.service';
 import { getMovieTitleString } from '../functions';
 import { MatSnackBar } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
+import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
     selector: 'app-film-detail',
@@ -30,15 +32,23 @@ export class FilmDetailComponent implements OnInit {
     ) { }
 
     public ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.theMovieDbService.getMovieDetail(params["id"]).subscribe(
+        this.route.params.pipe(map(params => params['id']))
+            .pipe(switchMap(id => {
+                if (id !== null && id !== undefined)
+                    return this.theMovieDbService.getMovieDetail(id);
+                else
+                    return of();
+            }))
+            .subscribe(
                 result => {
-                    this.movieDetail = result;
+                    if (result) {
+                        this.movieDetail = result;
                     this.movieTitle = getMovieTitleString(result.title, result.release_date);
 
-                    this.isToBeWatchedMovie();
-                    this.isWatchedMovie();
-                    this.getComments();
+                        this.isToBeWatchedMovie();
+                        this.isWatchedMovie();
+                        this.getComments();
+                    }
                 },
                 (error: HttpErrorResponse) => {
                     if (error.status == 404)
@@ -46,9 +56,7 @@ export class FilmDetailComponent implements OnInit {
                     else
                         this.showCommonErrorSanckBar();
                 });
-        });
-
-    }
+    };
 
     public getMoviePoster(): String {
         return this.theMovieDbService.getMoviePoster(this.movieDetail.poster_path);
